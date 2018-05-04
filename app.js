@@ -15,7 +15,9 @@ function geocodeAddress(geocoder, resultsMap) {
   geocoder.geocode({'address': address}, function(results, status) {
     if (status === 'OK') {
       resultsMap.setCenter(results[0].geometry.location);
-      var barrio = results[0].address_components[2]['long_name']
+      var barrio = results[0].address_components[2]['short_name']
+      console.log(barrio);
+      if (barrio == 'Medellín'){barrio = results[0].address_components[1]['short_name']}
       $('.barrio').text(barrio)
       console.log(barrio);
       var marker = new google.maps.Marker({
